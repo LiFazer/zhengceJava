@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.gov.hebei.ylbzj.dao.WordsDao">
+
+	<resultMap id="BaseResultMap" type="cn.gov.hebei.ylbzj.entity.WordsDO">
+		<id column="id" property="id" jdbcType="INTEGER"/>
+		<result column="words" property="words" jdbcType="VARCHAR"/>
+		<result column="count_times" property="countTimes" jdbcType="INTEGER"/>
+		<result column="feedback" property="feedback" jdbcType="INTEGER"/>
+		<result column="type" property="type" jdbcType="INTEGER"/>
+		<result column="insert_time" property="insertTime" jdbcType="TIMESTAMP"/>
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+	<sql id="Base_Column_List">
+    id, words, count_times, feedback, type, insert_time, update_time
+  </sql>
+	<select id="get" resultType="cn.gov.hebei.ylbzj.entity.WordsDO">
+		select `id`,`words`,`count_times`,`feedback`,`type`,`insert_time`,`update_time` from key_words where id = #{value}
+	</select>
+
+	<select id="list" resultMap="BaseResultMap">
+		select `id`,`words`,`count_times`,`feedback`,`type`,`insert_time`,`update_time` from key_words
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="words != null and words != ''"> and words = #{words} </if>
+		  		  <if test="countTimes != null and countTimes != ''"> and count_times = #{countTimes} </if>
+		  		  <if test="feedback != null and feedback != ''"> and feedback = #{feedback} </if>
+		  		  <if test="type != null and type != ''"> and type = #{type} </if>
+		  		  <if test="insertTime != null and insertTime != ''"> and insert_time = #{insertTime} </if>
+		  		  <if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from key_words
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="words != null and words != ''"> and words = #{words} </if>
+		  		  <if test="countTimes != null and countTimes != ''"> and count_times = #{countTimes} </if>
+		  		  <if test="feedback != null and feedback != ''"> and feedback = #{feedback} </if>
+		  		  <if test="type != null and type != ''"> and type = #{type} </if>
+		  		  <if test="insertTime != null and insertTime != ''"> and insert_time = #{insertTime} </if>
+		  		  <if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="cn.gov.hebei.ylbzj.entity.WordsDO" useGeneratedKeys="true" keyProperty="id">
+		<selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into key_words
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="words != null">
+				words,
+			</if>
+			<if test="countTimes != null">
+				count_times,
+			</if>
+			<if test="feedback != null">
+				feedback,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="insertTime != null">
+				insert_time,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="words != null">
+				#{words,jdbcType=VARCHAR},
+			</if>
+			<if test="countTimes != null">
+				#{countTimes,jdbcType=INTEGER},
+			</if>
+			<if test="feedback != null">
+				#{feedback,jdbcType=INTEGER},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=INTEGER},
+			</if>
+			<if test="insertTime != null">
+				#{insertTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	 
+	<update id="update" parameterType="cn.gov.hebei.ylbzj.entity.WordsDO">
+		update key_words 
+		<set>
+			<if test="words != null">`words` = #{words}, </if>
+			<if test="countTimes != null">`count_times` = #{countTimes}, </if>
+			<if test="feedback != null">`feedback` = #{feedback}, </if>
+			<if test="type != null">`type` = #{type}, </if>
+			<if test="insertTime != null">`insert_time` = #{insertTime}, </if>
+			<if test="updateTime != null">`update_time` = #{updateTime}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from key_words where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from key_words where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

@@ -1,0 +1,205 @@
+2020-02-25 09:42:37.802  INFO 166936 --- [main] cn.gov.hebei.ylbzj.DemoApplication       : Starting DemoApplication on 台式机 with PID 166936 (started by 13524 in D:\project\idea\程序\后端\intelligentanswer)
+2020-02-25 09:42:37.804  INFO 166936 --- [main] cn.gov.hebei.ylbzj.DemoApplication       : The following profiles are active: dev
+2020-02-25 09:42:38.848  INFO 166936 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 811 (http)
+2020-02-25 09:42:38.856  INFO 166936 --- [main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-811"]
+2020-02-25 09:42:38.857  INFO 166936 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-02-25 09:42:38.858  INFO 166936 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
+2020-02-25 09:42:38.971  INFO 166936 --- [main] o.a.c.c.C.[.[.[/intelligentanswer]       : Initializing Spring embedded WebApplicationContext
+2020-02-25 09:42:38.971  INFO 166936 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1136 ms
+2020-02-25 09:42:39.500  INFO 166936 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2020-02-25 09:42:39.581 DEBUG 166936 --- [main] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==>  Preparing: select `id`,`words`,`count_times`,`feedback`,`type`,`insert_time`,`update_time` from key_words order by id desc 
+2020-02-25 09:42:39.600 DEBUG 166936 --- [main] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==> Parameters: 
+2020-02-25 09:42:39.642 DEBUG 166936 --- [main] cn.gov.hebei.ylbzj.dao.WordsDao.list     : <==      Total: 255
+2020-02-25 09:42:39.644 DEBUG 166936 --- [main] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==>  Preparing: select id, question_name, question_answer,solve_times,un_solve_times,match_or_not,update_time from question order by id desc 
+2020-02-25 09:42:39.644 DEBUG 166936 --- [main] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==> Parameters: 
+2020-02-25 09:42:39.661 DEBUG 166936 --- [main] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : <==      Total: 99
+2020-02-25 09:42:39.876  INFO 166936 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4f89331f, org.springframework.security.web.context.SecurityContextPersistenceFilter@443effcb, org.springframework.security.web.header.HeaderWriterFilter@784abd3e, org.springframework.web.filter.CorsFilter@b8a7e43, org.springframework.security.web.authentication.logout.LogoutFilter@4c1bdcc2, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@68b9834c, org.springframework.security.web.session.ConcurrentSessionFilter@7efb53af, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@517a2b0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@43af351a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@618ff5c2, org.springframework.security.web.session.SessionManagementFilter@434514d8, org.springframework.security.web.access.ExceptionTranslationFilter@118ffcfd, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@50fb33a]
+2020-02-25 09:42:39.978  INFO 166936 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-02-25 09:42:40.189  WARN 166936 --- [main] o.s.b.a.f.FreeMarkerAutoConfiguration    : Cannot find template location(s): [classpath:/templates/] (please add some templates, check your FreeMarker configuration, or set spring.freemarker.checkTemplateLocation=false)
+2020-02-25 09:42:40.197  INFO 166936 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2020-02-25 09:42:40.227  INFO 166936 --- [main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-811"]
+2020-02-25 09:42:40.245  INFO 166936 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 811 (http) with context path '/intelligentanswer'
+2020-02-25 09:42:40.247  INFO 166936 --- [main] cn.gov.hebei.ylbzj.DemoApplication       : Started DemoApplication in 2.941 seconds (JVM running for 4.408)
+2020-02-25 09:44:00.010 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==>  Preparing: select `id`,`words`,`count_times`,`feedback`,`type`,`insert_time`,`update_time` from key_words order by id desc 
+2020-02-25 09:44:00.011 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==> Parameters: 
+2020-02-25 09:44:00.019 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : <==      Total: 255
+2020-02-25 09:44:00.019 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==>  Preparing: select id, question_name, question_answer,solve_times,un_solve_times,match_or_not,update_time from question order by id desc 
+2020-02-25 09:44:00.020 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==> Parameters: 
+2020-02-25 09:44:00.027 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : <==      Total: 99
+2020-02-25 09:45:00.003 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.list     : ==>  Preparing: select `id`,`open_times`,`insert_time`,`update_time` from open_times order by id desc 
+2020-02-25 09:45:00.003 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.list     : ==> Parameters: 
+2020-02-25 09:45:00.007 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.list     : <==      Total: 1
+2020-02-25 09:45:00.009 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.update   : ==>  Preparing: update open_times SET `open_times` = ?, `insert_time` = ?, `update_time` = ? where id = ? 
+2020-02-25 09:45:00.011 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.update   : ==> Parameters: 14(Integer), 2020-02-07 18:47:24.0(Timestamp), 2020-02-14 13:52:24.0(Timestamp), 1(Integer)
+2020-02-25 09:45:00.016 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.update   : <==    Updates: 1
+2020-02-25 09:46:00.002 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==>  Preparing: select `id`,`words`,`count_times`,`feedback`,`type`,`insert_time`,`update_time` from key_words order by id desc 
+2020-02-25 09:46:00.003 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==> Parameters: 
+2020-02-25 09:46:00.012 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : <==      Total: 255
+2020-02-25 09:46:00.013 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==>  Preparing: select id, question_name, question_answer,solve_times,un_solve_times,match_or_not,update_time from question order by id desc 
+2020-02-25 09:46:00.013 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==> Parameters: 
+2020-02-25 09:46:00.021 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : <==      Total: 99
+2020-02-25 09:48:00.004 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==>  Preparing: select `id`,`words`,`count_times`,`feedback`,`type`,`insert_time`,`update_time` from key_words order by id desc 
+2020-02-25 09:48:00.004 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==> Parameters: 
+2020-02-25 09:48:00.008 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : <==      Total: 255
+2020-02-25 09:48:00.008 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==>  Preparing: select id, question_name, question_answer,solve_times,un_solve_times,match_or_not,update_time from question order by id desc 
+2020-02-25 09:48:00.009 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==> Parameters: 
+2020-02-25 09:48:00.012 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : <==      Total: 99
+2020-02-25 09:48:00.013 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.list     : ==>  Preparing: select `id`,`open_times`,`insert_time`,`update_time` from open_times order by id desc 
+2020-02-25 09:48:00.013 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.list     : ==> Parameters: 
+2020-02-25 09:48:00.014 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.list     : <==      Total: 1
+2020-02-25 09:48:00.014 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.update   : ==>  Preparing: update open_times SET `open_times` = ?, `insert_time` = ?, `update_time` = ? where id = ? 
+2020-02-25 09:48:00.015 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.update   : ==> Parameters: 14(Integer), 2020-02-07 18:47:24.0(Timestamp), 2020-02-14 13:52:24.0(Timestamp), 1(Integer)
+2020-02-25 09:48:00.018 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.update   : <==    Updates: 1
+2020-02-25 09:49:41.186  INFO 166936 --- [http-nio-811-exec-3] o.a.c.c.C.[.[.[/intelligentanswer]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-02-25 09:49:41.186  INFO 166936 --- [http-nio-811-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-02-25 09:49:41.194  INFO 166936 --- [http-nio-811-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
+2020-02-25 09:50:00.016 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==>  Preparing: select `id`,`words`,`count_times`,`feedback`,`type`,`insert_time`,`update_time` from key_words order by id desc 
+2020-02-25 09:50:00.016 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==> Parameters: 
+2020-02-25 09:50:00.021 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : <==      Total: 255
+2020-02-25 09:50:00.021 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==>  Preparing: select id, question_name, question_answer,solve_times,un_solve_times,match_or_not,update_time from question order by id desc 
+2020-02-25 09:50:00.022 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==> Parameters: 
+2020-02-25 09:50:00.025 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : <==      Total: 99
+2020-02-25 09:51:00.003 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.list     : ==>  Preparing: select `id`,`open_times`,`insert_time`,`update_time` from open_times order by id desc 
+2020-02-25 09:51:00.003 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.list     : ==> Parameters: 
+2020-02-25 09:51:00.004 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.list     : <==      Total: 1
+2020-02-25 09:51:00.005 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.update   : ==>  Preparing: update open_times SET `open_times` = ?, `insert_time` = ?, `update_time` = ? where id = ? 
+2020-02-25 09:51:00.006 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.update   : ==> Parameters: 14(Integer), 2020-02-07 18:47:24.0(Timestamp), 2020-02-14 13:52:24.0(Timestamp), 1(Integer)
+2020-02-25 09:51:00.010 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.update   : <==    Updates: 1
+2020-02-25 09:52:00.002 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==>  Preparing: select `id`,`words`,`count_times`,`feedback`,`type`,`insert_time`,`update_time` from key_words order by id desc 
+2020-02-25 09:52:00.002 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==> Parameters: 
+2020-02-25 09:52:00.006 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : <==      Total: 255
+2020-02-25 09:52:00.007 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==>  Preparing: select id, question_name, question_answer,solve_times,un_solve_times,match_or_not,update_time from question order by id desc 
+2020-02-25 09:52:00.007 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==> Parameters: 
+2020-02-25 09:52:00.010 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : <==      Total: 99
+2020-02-25 09:54:00.007 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==>  Preparing: select `id`,`words`,`count_times`,`feedback`,`type`,`insert_time`,`update_time` from key_words order by id desc 
+2020-02-25 09:54:00.007 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==> Parameters: 
+2020-02-25 09:54:00.011 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : <==      Total: 255
+2020-02-25 09:54:00.012 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==>  Preparing: select id, question_name, question_answer,solve_times,un_solve_times,match_or_not,update_time from question order by id desc 
+2020-02-25 09:54:00.012 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==> Parameters: 
+2020-02-25 09:54:00.015 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : <==      Total: 99
+2020-02-25 09:54:00.016 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.list     : ==>  Preparing: select `id`,`open_times`,`insert_time`,`update_time` from open_times order by id desc 
+2020-02-25 09:54:00.016 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.list     : ==> Parameters: 
+2020-02-25 09:54:00.017 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.list     : <==      Total: 1
+2020-02-25 09:54:00.018 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.update   : ==>  Preparing: update open_times SET `open_times` = ?, `insert_time` = ?, `update_time` = ? where id = ? 
+2020-02-25 09:54:00.018 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.update   : ==> Parameters: 14(Integer), 2020-02-07 18:47:24.0(Timestamp), 2020-02-14 13:52:24.0(Timestamp), 1(Integer)
+2020-02-25 09:54:00.029 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.update   : <==    Updates: 1
+2020-02-25 09:56:00.002 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==>  Preparing: select `id`,`words`,`count_times`,`feedback`,`type`,`insert_time`,`update_time` from key_words order by id desc 
+2020-02-25 09:56:00.003 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==> Parameters: 
+2020-02-25 09:56:00.006 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : <==      Total: 255
+2020-02-25 09:56:00.007 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==>  Preparing: select id, question_name, question_answer,solve_times,un_solve_times,match_or_not,update_time from question order by id desc 
+2020-02-25 09:56:00.007 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==> Parameters: 
+2020-02-25 09:56:00.010 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : <==      Total: 99
+2020-02-25 09:57:00.002 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.list     : ==>  Preparing: select `id`,`open_times`,`insert_time`,`update_time` from open_times order by id desc 
+2020-02-25 09:57:00.002 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.list     : ==> Parameters: 
+2020-02-25 09:57:00.006 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.list     : <==      Total: 1
+2020-02-25 09:57:00.006 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.update   : ==>  Preparing: update open_times SET `open_times` = ?, `insert_time` = ?, `update_time` = ? where id = ? 
+2020-02-25 09:57:00.007 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.update   : ==> Parameters: 14(Integer), 2020-02-07 18:47:24.0(Timestamp), 2020-02-14 13:52:24.0(Timestamp), 1(Integer)
+2020-02-25 09:57:00.015 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.update   : <==    Updates: 1
+2020-02-25 09:58:00.002 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==>  Preparing: select `id`,`words`,`count_times`,`feedback`,`type`,`insert_time`,`update_time` from key_words order by id desc 
+2020-02-25 09:58:00.003 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==> Parameters: 
+2020-02-25 09:58:00.009 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : <==      Total: 255
+2020-02-25 09:58:00.010 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==>  Preparing: select id, question_name, question_answer,solve_times,un_solve_times,match_or_not,update_time from question order by id desc 
+2020-02-25 09:58:00.010 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==> Parameters: 
+2020-02-25 09:58:00.014 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : <==      Total: 99
+2020-02-25 10:00:00.004 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.list     : ==>  Preparing: select `id`,`open_times`,`insert_time`,`update_time` from open_times order by id desc 
+2020-02-25 10:00:00.005 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.list     : ==> Parameters: 
+2020-02-25 10:00:00.005 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.list     : <==      Total: 1
+2020-02-25 10:00:00.006 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.update   : ==>  Preparing: update open_times SET `open_times` = ?, `insert_time` = ?, `update_time` = ? where id = ? 
+2020-02-25 10:00:00.006 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.update   : ==> Parameters: 14(Integer), 2020-02-07 18:47:24.0(Timestamp), 2020-02-14 13:52:24.0(Timestamp), 1(Integer)
+2020-02-25 10:00:00.010 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.update   : <==    Updates: 1
+2020-02-25 10:00:00.011 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==>  Preparing: select `id`,`words`,`count_times`,`feedback`,`type`,`insert_time`,`update_time` from key_words order by id desc 
+2020-02-25 10:00:00.011 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==> Parameters: 
+2020-02-25 10:00:00.015 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : <==      Total: 255
+2020-02-25 10:00:00.016 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==>  Preparing: select id, question_name, question_answer,solve_times,un_solve_times,match_or_not,update_time from question order by id desc 
+2020-02-25 10:00:00.016 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==> Parameters: 
+2020-02-25 10:00:00.019 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : <==      Total: 99
+2020-02-25 10:02:00.006 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==>  Preparing: select `id`,`words`,`count_times`,`feedback`,`type`,`insert_time`,`update_time` from key_words order by id desc 
+2020-02-25 10:02:00.007 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==> Parameters: 
+2020-02-25 10:02:00.013 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : <==      Total: 255
+2020-02-25 10:02:00.014 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==>  Preparing: select id, question_name, question_answer,solve_times,un_solve_times,match_or_not,update_time from question order by id desc 
+2020-02-25 10:02:00.014 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==> Parameters: 
+2020-02-25 10:02:00.019 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : <==      Total: 99
+2020-02-25 10:03:00.001 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.list     : ==>  Preparing: select `id`,`open_times`,`insert_time`,`update_time` from open_times order by id desc 
+2020-02-25 10:03:00.001 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.list     : ==> Parameters: 
+2020-02-25 10:03:00.003 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.list     : <==      Total: 1
+2020-02-25 10:03:00.004 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.update   : ==>  Preparing: update open_times SET `open_times` = ?, `insert_time` = ?, `update_time` = ? where id = ? 
+2020-02-25 10:03:00.004 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.update   : ==> Parameters: 14(Integer), 2020-02-07 18:47:24.0(Timestamp), 2020-02-14 13:52:24.0(Timestamp), 1(Integer)
+2020-02-25 10:03:00.008 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.update   : <==    Updates: 1
+2020-02-25 10:04:00.002 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==>  Preparing: select `id`,`words`,`count_times`,`feedback`,`type`,`insert_time`,`update_time` from key_words order by id desc 
+2020-02-25 10:04:00.006 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==> Parameters: 
+2020-02-25 10:04:00.009 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : <==      Total: 255
+2020-02-25 10:04:00.010 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==>  Preparing: select id, question_name, question_answer,solve_times,un_solve_times,match_or_not,update_time from question order by id desc 
+2020-02-25 10:04:00.010 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==> Parameters: 
+2020-02-25 10:04:00.012 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : <==      Total: 99
+2020-02-25 10:06:00.006 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==>  Preparing: select `id`,`words`,`count_times`,`feedback`,`type`,`insert_time`,`update_time` from key_words order by id desc 
+2020-02-25 10:06:00.006 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==> Parameters: 
+2020-02-25 10:06:00.010 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : <==      Total: 255
+2020-02-25 10:06:00.010 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==>  Preparing: select id, question_name, question_answer,solve_times,un_solve_times,match_or_not,update_time from question order by id desc 
+2020-02-25 10:06:00.010 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==> Parameters: 
+2020-02-25 10:06:00.013 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : <==      Total: 99
+2020-02-25 10:06:00.014 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.list     : ==>  Preparing: select `id`,`open_times`,`insert_time`,`update_time` from open_times order by id desc 
+2020-02-25 10:06:00.014 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.list     : ==> Parameters: 
+2020-02-25 10:06:00.015 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.list     : <==      Total: 1
+2020-02-25 10:06:00.015 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.update   : ==>  Preparing: update open_times SET `open_times` = ?, `insert_time` = ?, `update_time` = ? where id = ? 
+2020-02-25 10:06:00.016 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.update   : ==> Parameters: 14(Integer), 2020-02-07 18:47:24.0(Timestamp), 2020-02-14 13:52:24.0(Timestamp), 1(Integer)
+2020-02-25 10:06:00.021 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.update   : <==    Updates: 1
+2020-02-25 10:08:00.007 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==>  Preparing: select `id`,`words`,`count_times`,`feedback`,`type`,`insert_time`,`update_time` from key_words order by id desc 
+2020-02-25 10:08:00.007 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==> Parameters: 
+2020-02-25 10:08:00.011 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : <==      Total: 255
+2020-02-25 10:08:00.011 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==>  Preparing: select id, question_name, question_answer,solve_times,un_solve_times,match_or_not,update_time from question order by id desc 
+2020-02-25 10:08:00.012 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==> Parameters: 
+2020-02-25 10:08:00.014 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : <==      Total: 99
+2020-02-25 10:09:00.001 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.list     : ==>  Preparing: select `id`,`open_times`,`insert_time`,`update_time` from open_times order by id desc 
+2020-02-25 10:09:00.001 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.list     : ==> Parameters: 
+2020-02-25 10:09:00.002 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.list     : <==      Total: 1
+2020-02-25 10:09:00.003 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.update   : ==>  Preparing: update open_times SET `open_times` = ?, `insert_time` = ?, `update_time` = ? where id = ? 
+2020-02-25 10:09:00.003 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.update   : ==> Parameters: 14(Integer), 2020-02-07 18:47:24.0(Timestamp), 2020-02-14 13:52:24.0(Timestamp), 1(Integer)
+2020-02-25 10:09:00.015 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.update   : <==    Updates: 1
+2020-02-25 10:10:00.001 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==>  Preparing: select `id`,`words`,`count_times`,`feedback`,`type`,`insert_time`,`update_time` from key_words order by id desc 
+2020-02-25 10:10:00.001 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==> Parameters: 
+2020-02-25 10:10:00.007 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : <==      Total: 255
+2020-02-25 10:10:00.008 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==>  Preparing: select id, question_name, question_answer,solve_times,un_solve_times,match_or_not,update_time from question order by id desc 
+2020-02-25 10:10:00.008 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==> Parameters: 
+2020-02-25 10:10:00.010 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : <==      Total: 99
+2020-02-25 10:12:00.004 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.list     : ==>  Preparing: select `id`,`open_times`,`insert_time`,`update_time` from open_times order by id desc 
+2020-02-25 10:12:00.005 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.list     : ==> Parameters: 
+2020-02-25 10:12:00.005 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.list     : <==      Total: 1
+2020-02-25 10:12:00.006 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.update   : ==>  Preparing: update open_times SET `open_times` = ?, `insert_time` = ?, `update_time` = ? where id = ? 
+2020-02-25 10:12:00.007 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.update   : ==> Parameters: 14(Integer), 2020-02-07 18:47:24.0(Timestamp), 2020-02-14 13:52:24.0(Timestamp), 1(Integer)
+2020-02-25 10:12:00.011 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.update   : <==    Updates: 1
+2020-02-25 10:12:00.012 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==>  Preparing: select `id`,`words`,`count_times`,`feedback`,`type`,`insert_time`,`update_time` from key_words order by id desc 
+2020-02-25 10:12:00.012 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==> Parameters: 
+2020-02-25 10:12:00.017 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : <==      Total: 255
+2020-02-25 10:12:00.018 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==>  Preparing: select id, question_name, question_answer,solve_times,un_solve_times,match_or_not,update_time from question order by id desc 
+2020-02-25 10:12:00.018 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==> Parameters: 
+2020-02-25 10:12:00.021 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : <==      Total: 99
+2020-02-25 10:14:00.006 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==>  Preparing: select `id`,`words`,`count_times`,`feedback`,`type`,`insert_time`,`update_time` from key_words order by id desc 
+2020-02-25 10:14:00.007 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==> Parameters: 
+2020-02-25 10:14:00.013 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : <==      Total: 255
+2020-02-25 10:14:00.014 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==>  Preparing: select id, question_name, question_answer,solve_times,un_solve_times,match_or_not,update_time from question order by id desc 
+2020-02-25 10:14:00.014 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==> Parameters: 
+2020-02-25 10:14:00.018 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : <==      Total: 99
+2020-02-25 10:15:00.003 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.list     : ==>  Preparing: select `id`,`open_times`,`insert_time`,`update_time` from open_times order by id desc 
+2020-02-25 10:15:00.004 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.list     : ==> Parameters: 
+2020-02-25 10:15:00.005 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.list     : <==      Total: 1
+2020-02-25 10:15:00.005 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.update   : ==>  Preparing: update open_times SET `open_times` = ?, `insert_time` = ?, `update_time` = ? where id = ? 
+2020-02-25 10:15:00.006 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.update   : ==> Parameters: 14(Integer), 2020-02-07 18:47:24.0(Timestamp), 2020-02-14 13:52:24.0(Timestamp), 1(Integer)
+2020-02-25 10:15:00.010 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.update   : <==    Updates: 1
+2020-02-25 10:16:00.002 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==>  Preparing: select `id`,`words`,`count_times`,`feedback`,`type`,`insert_time`,`update_time` from key_words order by id desc 
+2020-02-25 10:16:00.002 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==> Parameters: 
+2020-02-25 10:16:00.008 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : <==      Total: 255
+2020-02-25 10:16:00.008 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==>  Preparing: select id, question_name, question_answer,solve_times,un_solve_times,match_or_not,update_time from question order by id desc 
+2020-02-25 10:16:00.009 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==> Parameters: 
+2020-02-25 10:16:00.012 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : <==      Total: 99
+2020-02-25 10:18:00.004 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.list     : ==>  Preparing: select `id`,`open_times`,`insert_time`,`update_time` from open_times order by id desc 
+2020-02-25 10:18:00.004 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.list     : ==> Parameters: 
+2020-02-25 10:18:00.005 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.list     : <==      Total: 1
+2020-02-25 10:18:00.006 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.update   : ==>  Preparing: update open_times SET `open_times` = ?, `insert_time` = ?, `update_time` = ? where id = ? 
+2020-02-25 10:18:00.006 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.update   : ==> Parameters: 14(Integer), 2020-02-07 18:47:24.0(Timestamp), 2020-02-14 13:52:24.0(Timestamp), 1(Integer)
+2020-02-25 10:18:00.010 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.TimesDao.update   : <==    Updates: 1
+2020-02-25 10:18:00.010 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==>  Preparing: select `id`,`words`,`count_times`,`feedback`,`type`,`insert_time`,`update_time` from key_words order by id desc 
+2020-02-25 10:18:00.010 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : ==> Parameters: 
+2020-02-25 10:18:00.013 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.WordsDao.list     : <==      Total: 255
+2020-02-25 10:18:00.014 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==>  Preparing: select id, question_name, question_answer,solve_times,un_solve_times,match_or_not,update_time from question order by id desc 
+2020-02-25 10:18:00.014 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : ==> Parameters: 
+2020-02-25 10:18:00.016 DEBUG 166936 --- [scheduling-1] cn.gov.hebei.ylbzj.dao.QuestionDao.list  : <==      Total: 99

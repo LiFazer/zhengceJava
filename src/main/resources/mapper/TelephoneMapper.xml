@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.gov.hebei.ylbzj.dao.TelephoneDao">
+    <resultMap id="BaseResultMap" type="cn.gov.hebei.ylbzj.entity.TelephoneDO">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="dep_name" property="depName" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="tel" property="tel" jdbcType="VARCHAR"/>
+        <result column="insert_time" property="insertTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="summer_am_start" property="summerAmStart" jdbcType="TIME"/>
+        <result column="summer_am_end" property="summerAmEnd" jdbcType="TIME"/>
+        <result column="summer_pm_start" property="summerPmStart" jdbcType="TIME"/>
+        <result column="summer_pm_end" property="summerPmEnd" jdbcType="TIME"/>
+        <result column="winter_am_start" property="winterAmStart" jdbcType="TIME"/>
+        <result column="winter_am_end" property="winterAmEnd" jdbcType="TIME"/>
+        <result column="winter_pm_start" property="winterPmStart" jdbcType="TIME"/>
+        <result column="winter_pm_end" property="winterPmEnd" jdbcType="TIME"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, dep_name, phone, tel, insert_time, update_time, summer_am_start, summer_am_end,
+    summer_pm_start, summer_pm_end, winter_am_start, winter_am_end, winter_pm_start,
+    winter_pm_end
+  </sql>
+    <select id="get" resultType="cn.gov.hebei.ylbzj.entity.TelephoneDO">
+        select
+        <include refid="Base_Column_List"/>
+        from telephone where id = #{value}
+    </select>
+
+    <select id="list" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from telephone
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="depName != null and depName != ''">and dep_name = #{depName}</if>
+            <if test="phone != null and phone != ''">and phone = #{phone}</if>
+            <if test="tel != null and tel != ''">and tel = #{tel}</if>
+            <if test="insertTime != null and insertTime != ''">and insert_time = #{insertTime}</if>
+            <if test="updateTime != null and updateTime != ''">and update_time = #{updateTime}</if>
+            <if test="summerAmStart != null and summerAmStart != ''">and summer_am_start = #{summerAmStart}</if>
+            <if test="summerAmEnd != null and summerAmEnd != ''">and summer_am_end = #{summerAmEnd}</if>
+            <if test="summerPmStart != null and summerPmStart != ''">and summer_pm_start = #{summerPmStart}</if>
+            <if test="summerPmEnd != null and summerPmEnd != ''">and summer_pm_end = #{summerPmEnd}</if>
+            <if test="winterAmStart != null and winterAmStart != ''">and winter_am_start = #{winterAmStart}</if>
+            <if test="winterAmEnd != null and winterAmEnd != ''">and winter_am_end = #{winterAmEnd}</if>
+            <if test="winterPmStart != null and winterPmStart != ''">and winter_pm_start = #{winterPmStart}</if>
+            <if test="winterPmEnd != null and winterPmEnd != ''">and winter_pm_end = #{winterPmEnd}</if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="count" resultType="int">
+        select count(*) from telephone
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="depName != null and depName != ''">and dep_name = #{depName}</if>
+            <if test="phone != null and phone != ''">and phone = #{phone}</if>
+            <if test="tel != null and tel != ''">and tel = #{tel}</if>
+            <if test="insertTime != null and insertTime != ''">and insert_time = #{insertTime}</if>
+            <if test="updateTime != null and updateTime != ''">and update_time = #{updateTime}</if>
+            <if test="summerAmStart != null and summerAmStart != ''">and summer_am_start = #{summerAmStart}</if>
+            <if test="summerAmEnd != null and summerAmEnd != ''">and summer_am_end = #{summerAmEnd}</if>
+            <if test="summerPmStart != null and summerPmStart != ''">and summer_pm_start = #{summerPmStart}</if>
+            <if test="summerPmEnd != null and summerPmEnd != ''">and summer_pm_end = #{summerPmEnd}</if>
+            <if test="winterAmStart != null and winterAmStart != ''">and winter_am_start = #{winterAmStart}</if>
+            <if test="winterAmEnd != null and winterAmEnd != ''">and winter_am_end = #{winterAmEnd}</if>
+            <if test="winterPmStart != null and winterPmStart != ''">and winter_pm_start = #{winterPmStart}</if>
+            <if test="winterPmEnd != null and winterPmEnd != ''">and winter_pm_end = #{winterPmEnd}</if>
+        </where>
+    </select>
+
+    <insert id="save" parameterType="cn.gov.hebei.ylbzj.entity.TelephoneDO" useGeneratedKeys="true" keyProperty="id">
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into telephone
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="depName != null">
+                dep_name,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="tel != null">
+                tel,
+            </if>
+            <if test="insertTime != null">
+                insert_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="summerAmStart != null">
+                summer_am_start,
+            </if>
+            <if test="summerAmEnd != null">
+                summer_am_end,
+            </if>
+            <if test="summerPmStart != null">
+                summer_pm_start,
+            </if>
+            <if test="summerPmEnd != null">
+                summer_pm_end,
+            </if>
+            <if test="winterAmStart != null">
+                winter_am_start,
+            </if>
+            <if test="winterAmEnd != null">
+                winter_am_end,
+            </if>
+            <if test="winterPmStart != null">
+                winter_pm_start,
+            </if>
+            <if test="winterPmEnd != null">
+                winter_pm_end,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="depName != null">
+                #{depName,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="tel != null">
+                #{tel,jdbcType=VARCHAR},
+            </if>
+            <if test="insertTime != null">
+                #{insertTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="summerAmStart != null">
+                #{summerAmStart,jdbcType=TIME},
+            </if>
+            <if test="summerAmEnd != null">
+                #{summerAmEnd,jdbcType=TIME},
+            </if>
+            <if test="summerPmStart != null">
+                #{summerPmStart,jdbcType=TIME},
+            </if>
+            <if test="summerPmEnd != null">
+                #{summerPmEnd,jdbcType=TIME},
+            </if>
+            <if test="winterAmStart != null">
+                #{winterAmStart,jdbcType=TIME},
+            </if>
+            <if test="winterAmEnd != null">
+                #{winterAmEnd,jdbcType=TIME},
+            </if>
+            <if test="winterPmStart != null">
+                #{winterPmStart,jdbcType=TIME},
+            </if>
+            <if test="winterPmEnd != null">
+                #{winterPmEnd,jdbcType=TIME},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="cn.gov.hebei.ylbzj.entity.TelephoneDO">
+        update telephone
+        <set>
+            <if test="depName != null">`dep_name` = #{depName},</if>
+            <if test="phone != null">`phone` = #{phone},</if>
+            <if test="tel != null">`tel` = #{tel},</if>
+            <if test="insertTime != null">`insert_time` = #{insertTime},</if>
+            <if test="updateTime != null">`update_time` = #{updateTime},</if>
+            <if test="summerAmStart != null">`summer_am_start` = #{summerAmStart},</if>
+            <if test="summerAmEnd != null">`summer_am_end` = #{summerAmEnd},</if>
+            <if test="summerPmStart != null">`summer_pm_start` = #{summerPmStart},</if>
+            <if test="summerPmEnd != null">`summer_pm_end` = #{summerPmEnd},</if>
+            <if test="winterAmStart != null">`winter_am_start` = #{winterAmStart},</if>
+            <if test="winterAmEnd != null">`winter_am_end` = #{winterAmEnd},</if>
+            <if test="winterPmStart != null">`winter_pm_start` = #{winterPmStart},</if>
+            <if test="winterPmEnd != null">`winter_pm_end` = #{winterPmEnd}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="remove">
+		delete from telephone where id = #{value}
+	</delete>
+
+    <delete id="batchRemove">
+        delete from telephone where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="selectByIds" resultMap="BaseResultMap">
+        select
+        DATE_FORMAT(summer_am_start,"%H:%i") as sas,
+        DATE_FORMAT(summer_am_end,"%H:%i") as sae,
+        DATE_FORMAT(summer_pm_start,"%H:%i") as sps,
+        DATE_FORMAT(summer_pm_end,"%H:%i") as spe,
+        DATE_FORMAT(winter_am_start,"%H:%i") as  was,
+        DATE_FORMAT(winter_am_end,"%H:%i") as wae,
+        DATE_FORMAT(winter_pm_start,"%H:%i") as wps,
+        DATE_FORMAT(winter_pm_end,"%H:%i") as wpe,
+        <include refid="Base_Column_List"/>
+        from telephone
+        where id in
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+    <select id="findByIds" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from telephone where id in
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+</mapper>

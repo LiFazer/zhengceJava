@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.gov.hebei.ylbzj.dao.QuestionDao">
+    <resultMap id="BaseResultMap" type="cn.gov.hebei.ylbzj.entity.QuestionDO">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="question_name" property="questionName" jdbcType="VARCHAR"/>
+        <result column="question_answer" property="questionAnswer" jdbcType="VARCHAR"/>
+        <result column="solve_times" property="solveTimes" jdbcType="INTEGER"/>
+        <result column="un_solve_times" property="unSolveTimes" jdbcType="INTEGER"/>
+        <result column="match_or_not" property="matchOrNot" jdbcType="INTEGER"/>
+        <result column="update_time" property="updateTime" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, question_name, question_answer,solve_times,un_solve_times,match_or_not,update_time
+  </sql>
+    <select id="get" resultMap="BaseResultMap">
+		select `id`,`question_name`,`question_answer`,`solve_times` ,`un_solve_times`,`match_or_not` from question where id = #{value}
+	</select>
+
+    <select id="list" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/> from question
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="questionName != null and questionName != ''">and question_name = #{questionName}</if>
+            <if test="questionAnswer != null and questionAnswer != ''">and question_answer = #{questionAnswer}</if>
+            <if test="solveTimes != null and solveTimes != ''">and solve_times = #{solveTimes}</if>
+            <if test="unSolveTimes != null and unSolveTimes != ''">and un_solve_times = #{unSolveTimes}</if>
+            <if test="matchOrNot != null">and match_or_not = #{matchOrNot}</if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        select count(*) from question
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="questionName != null and questionName != ''">and question_name = #{questionName}</if>
+            <if test="questionAnswer != null and questionAnswer != ''">and question_answer = #{questionAnswer}</if>
+            <if test="solveTimes != null and solveTimes != ''">and solve_times = #{solveTimes}</if>
+            <if test="unSolveTimes != null and unSolveTimes != ''">and un_solve_times = #{unSolveTimes}</if>
+            <if test="matchOrNot != null and matchOrNot != ''">and match_or_not = #{matchOrNot}</if>
+        </where>
+    </select>
+
+    <insert id="save" parameterType="cn.gov.hebei.ylbzj.entity.QuestionDO">
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into question
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="questionName != null">
+                question_name,
+            </if>
+            <if test="questionAnswer != null">
+                question_answer,
+            </if>
+            <if test="solveTimes != null">
+                solve_times,
+            </if>
+            <if test="unSolveTimes != null">
+                un_solve_times,
+            </if>
+            <if test="matchOrNot != null">
+                match_or_not,
+            </if>
+            insert_time,
+            update_time
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="questionName != null">
+                #{questionName,jdbcType=VARCHAR},
+            </if>
+            <if test="questionAnswer != null">
+                #{questionAnswer,jdbcType=VARCHAR},
+            </if>
+            <if test="solveTimes != null">
+                #{solveTimes},
+            </if>
+            <if test="unSolveTimes != null">
+                #{unSolveTimes},
+            </if>
+            <if test="matchOrNot != null">
+                #{matchOrNot},
+            </if>
+            now(),
+            now()
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="cn.gov.hebei.ylbzj.entity.QuestionDO">
+        update question
+        <set>
+            <if test="questionName != null">`question_name` = #{questionName},</if>
+            <if test="questionAnswer != null">`question_answer` = #{questionAnswer},</if>
+            <if test="solveTimes != null">`solve_times` = #{solveTimes},</if>
+            <if test="unSolveTimes != null">`un_solve_times` = #{unSolveTimes},</if>
+            <if test="matchOrNot != null">`match_or_not` = #{matchOrNot},</if>
+
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="remove">
+		delete from question where id = #{value}
+	</delete>
+
+    <delete id="batchRemove">
+        delete from question where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="findThreeQuestion" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from question order by rand() limit 3;
+    </select>
+    <select id="question" resultMap="BaseResultMap">
+        <!--select
+        <include refid="Base_Column_List"/>
+        from question where question_name LIKE '%${questionName}%'
+        limit ${start},${limit};-->
+
+        SELECT
+        <include refid="Base_Column_List"/>
+        from question WHERE question_name regexp '(${questionName})' ORDER BY (case when solve_times is null then 999999
+        ELSE solve_times END);
+    </select>
+    <select id="countByQuestionName" resultType="java.lang.Integer">
+        SELECT COUNT(1) FROM question where question_name regexp '(${questionName})'
+    </select>
+
+    <select id="getByQuestionName" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM question where question_name = #{questionName}
+    </select>
+
+    <select id="queryMatchList" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM question
+        where match_or_not = 1
+
+        <if test="questionName != null and questionName != ''">
+        and question_name regexp '(${questionName})'
+        </if>
+        <if test="idList != null and idList.size > 0">
+          and id in
+            <foreach item="id" collection="idList" open="(" separator="," close=")">
+                #{id}
+            </foreach>
+        </if>
+
+    </select>
+
+
+    <update id="updateSolveTimes">
+        UPDATE question set solve_times = IFNULL(solve_times,0)+1 WHERE id = #{id};
+    </update>
+    <update id="updateUnSolveTimes">
+        UPDATE question set un_solve_times = IFNULL(un_solve_times,0)+1 WHERE id = #{id};
+    </update>
+
+
+    <select id="findSixQuestionWithoutSelf" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+         FROM question WHERE id >= (
+((SELECT MAX(id) FROM question)-(SELECT MIN(id) FROM question)) * RAND() + (SELECT MIN(id) FROM question) ) and id NOT IN (#{id}) LIMIT 6;
+    </select>
+
+    <select id="questionAll" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from question WHERE question_name regexp '(${questionName})' ORDER BY (case when solve_times is null then 999999
+        ELSE solve_times END) LIMIT ${start},${limit};
+    </select>
+</mapper>

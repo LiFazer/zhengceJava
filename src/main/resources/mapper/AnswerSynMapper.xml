@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.gov.hebei.ylbzj.dao.AnswerSynDao">
+
+    <resultMap id="BaseResultMap" type="cn.gov.hebei.ylbzj.entity.AnswerSynDO">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="question_name" property="questionName" jdbcType="VARCHAR"/>
+        <result column="question_answer" property="questionAnswer" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, question_name, question_answer
+  </sql>
+    <select id="get" resultType="cn.gov.hebei.ylbzj.entity.AnswerSynDO">
+		select `id`,`question_name`,`question_answer` from question_answer_syn where id = #{value}
+	</select>
+
+    <select id="list" resultType="cn.gov.hebei.ylbzj.entity.AnswerSynDO">
+        select `id`,`question_name`,`question_answer` from question_answer_syn
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="questionName != null and questionName != ''">and question_name = #{questionName}</if>
+            <if test="questionAnswer != null and questionAnswer != ''">and question_answer = #{questionAnswer}</if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="count" resultType="int">
+        select count(*) from question_answer_syn
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="questionName != null and questionName != ''">and question_name = #{questionName}</if>
+            <if test="questionAnswer != null and questionAnswer != ''">and question_answer = #{questionAnswer}</if>
+        </where>
+    </select>
+
+    <insert id="save" parameterType="cn.gov.hebei.ylbzj.entity.AnswerSynDO" useGeneratedKeys="true"
+            keyProperty="id">
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into question_answer_syn
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="questionName != null">
+                question_name,
+            </if>
+            <if test="questionAnswer != null">
+                question_answer,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="questionName != null">
+                #{questionName,jdbcType=VARCHAR},
+            </if>
+            <if test="questionAnswer != null">
+                #{questionAnswer,jdbcType=VARCHAR},
+            </if>
+
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="cn.gov.hebei.ylbzj.entity.AnswerSynDO">
+        update question_answer_syn
+        <set>
+            <if test="questionName != null">`question_name` = #{questionName},</if>
+            <if test="questionAnswer != null">`question_answer` = #{questionAnswer},</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="remove">
+		delete from question_answer_syn where id = #{value}
+	</delete>
+
+    <delete id="batchRemove">
+        delete from question_answer_syn where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

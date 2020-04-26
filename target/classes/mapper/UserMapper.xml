@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.gov.hebei.ylbzj.dao.UserDao">
+
+    <select id="get" resultType="cn.gov.hebei.ylbzj.entity.UserDO">
+		select `id`,`username`,`password`,`role`,`state`,`phone`,`update_time`,`create_time` from user where id = #{value}
+	</select>
+
+    <select id="list" resultType="cn.gov.hebei.ylbzj.entity.UserDO">
+        select `id`,`username`,`password`,`role`,`state`,`phone`,`update_time`,`create_time` from user
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="username != null and username != ''">and username = #{username}</if>
+            <if test="password != null and password != ''">and password = #{password}</if>
+            <if test="role != null and role != ''">and role = #{role}</if>
+            <if test="state != null and state != ''">and state = #{state}</if>
+            <if test="phone != null and phone != ''">and phone = #{phone}</if>
+            <if test="updateTime != null and updateTime != ''">and update_time = #{updateTime}</if>
+            <if test="createTime != null and createTime != ''">and create_time = #{createTime}</if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="count" resultType="int">
+        select count(*) from user
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="username != null and username != ''">and username = #{username}</if>
+            <if test="password != null and password != ''">and password = #{password}</if>
+            <if test="role != null and role != ''">and role = #{role}</if>
+            <if test="state != null and state != ''">and state = #{state}</if>
+            <if test="phone != null and phone != ''">and phone = #{phone}</if>
+            <if test="updateTime != null and updateTime != ''">and update_time = #{updateTime}</if>
+            <if test="createTime != null and createTime != ''">and create_time = #{createTime}</if>
+        </where>
+    </select>
+
+    <insert id="save" parameterType="cn.gov.hebei.ylbzj.entity.UserDO" useGeneratedKeys="true" keyProperty="id">
+		insert into user
+		(
+			`username`, 
+			`password`, 
+			`role`, 
+			`state`, 
+			`phone`, 
+			`update_time`, 
+			`create_time`
+		)
+		values
+		(
+			#{username}, 
+			#{password}, 
+			#{role}, 
+			#{state}, 
+			#{phone}, 
+			#{updateTime}, 
+			#{createTime}
+		)
+	</insert>
+
+    <update id="update" parameterType="cn.gov.hebei.ylbzj.entity.UserDO">
+        update user
+        <set>
+            <if test="username != null">`username` = #{username},</if>
+            <if test="password != null">`password` = #{password},</if>
+            <if test="role != null">`role` = #{role},</if>
+            <if test="state != null">`state` = #{state},</if>
+            <if test="phone != null">`phone` = #{phone},</if>
+            <if test="updateTime != null">`update_time` = #{updateTime},</if>
+            <if test="createTime != null">`create_time` = #{createTime}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="remove">
+		delete from user where id = #{value}
+	</delete>
+
+    <delete id="batchRemove">
+        delete from user where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="selectByName" resultType="cn.gov.hebei.ylbzj.entity.UserDO">
+        select  * from sys_user where username = #{username}
+    </select>
+
+</mapper>

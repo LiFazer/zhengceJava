@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.gov.hebei.ylbzj.dao.ClassificationDao">
+    <resultMap id="BaseResultMap" type="cn.gov.hebei.ylbzj.entity.ClassificationDO">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="pid" property="pid" jdbcType="INTEGER"/>
+        <result column="classification_name" property="classificationName" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, pid, classification_name, update_time, create_time
+    </sql>
+    <select id="get" resultMap="BaseResultMap">
+		select `id`,`pid`,`classification_name`,`update_time`,`create_time` from classification where id = #{value}
+	</select>
+
+    <select id="list" resultType="cn.gov.hebei.ylbzj.entity.ClassificationDO">
+        select `id`,`pid`,`classification_name`,`update_time`,`create_time` from classification
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="pid != null and pid != ''">and pid = #{pid}</if>
+            <if test="classificationName != null and classificationName != ''">and classification_name =
+                #{classificationName}
+            </if>
+            <if test="updateTime != null and updateTime != ''">and update_time = #{updateTime}</if>
+            <if test="createTime != null and createTime != ''">and create_time = #{createTime}</if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="count" resultType="int">
+        select count(*) from classification
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="pid != null and pid != ''">and pid = #{pid}</if>
+            <if test="classificationName != null and classificationName != ''">and classification_name =
+                #{classificationName}
+            </if>
+            <if test="updateTime != null and updateTime != ''">and update_time = #{updateTime}</if>
+            <if test="createTime != null and createTime != ''">and create_time = #{createTime}</if>
+        </where>
+    </select>
+
+    <insert id="save" parameterType="cn.gov.hebei.ylbzj.entity.ClassificationDO" useGeneratedKeys="true"
+            keyProperty="id">
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into classification
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pid != null">
+                pid,
+            </if>
+            <if test="classificationName != null">
+                classification_name,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="pid != null">
+                #{pid,jdbcType=INTEGER},
+            </if>
+            <if test="classificationName != null">
+                #{classificationName,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="update" parameterType="cn.gov.hebei.ylbzj.entity.ClassificationDO">
+        update classification
+        <set>
+            <if test="pid != null">`pid` = #{pid},</if>
+            <if test="classificationName != null">`classification_name` = #{classificationName},</if>
+            <if test="updateTime != null">`update_time` = #{updateTime},</if>
+            <if test="createTime != null">`create_time` = #{createTime}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="remove">
+		delete from classification where id = #{value}
+	</delete>
+
+    <delete id="batchRemove">
+        delete from classification where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="findClassificationLikeQuestionName" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from classification where classification_name regexp '(${questionName})'
+
+    </select>
+
+    <select id="classificationById" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from classification where pid = #{id}
+
+    </select>
+
+    <select id="findAllClassification" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from classification
+    </select>
+
+    <select id="getNameByIds" resultType="java.lang.String">
+        select classification_name
+        from classification
+        where id in
+        <foreach item="id" collection="ids" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+
+    <delete id="batchRemoveByIdList">
+        delete from classification where id in
+        <foreach item="id" collection="ids" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

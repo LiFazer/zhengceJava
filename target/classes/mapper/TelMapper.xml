@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.gov.hebei.ylbzj.dao.TelDao">
+
+	<resultMap id="BaseResultMap" type="cn.gov.hebei.ylbzj.entity.TelDO">
+		<id column="id" property="id" jdbcType="INTEGER"/>
+		<result column="question_id" property="questionId" jdbcType="INTEGER"/>
+		<result column="tel_id" property="telId" jdbcType="INTEGER"/>
+		<result column="insert_time" property="insertTime" jdbcType="TIMESTAMP"/>
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+	<sql id="Base_Column_List">
+    id, question_id, tel_id, insert_time, update_time
+  </sql>
+
+	<select id="get" resultType="cn.gov.hebei.ylbzj.entity.TelDO">
+		select `id`,`question_id`,`tel_id`,`insert_time`,`update_time` from que_tel where id = #{value}
+	</select>
+
+	<select id="list" resultMap="BaseResultMap">
+		select `id`,`question_id`,`tel_id`,`insert_time`,`update_time` from que_tel
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="questionId != null and questionId != ''"> and question_id = #{questionId} </if>
+		  		  <if test="telId != null and telId != ''"> and tel_id = #{telId} </if>
+		  		  <if test="insertTime != null and insertTime != ''"> and insert_time = #{insertTime} </if>
+		  		  <if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from que_tel
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="questionId != null and questionId != ''"> and question_id = #{questionId} </if>
+		  		  <if test="telId != null and telId != ''"> and tel_id = #{telId} </if>
+		  		  <if test="insertTime != null and insertTime != ''"> and insert_time = #{insertTime} </if>
+		  		  <if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="cn.gov.hebei.ylbzj.entity.TelDO" useGeneratedKeys="true" keyProperty="id">
+		<selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into que_tel
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="questionId != null">
+				question_id,
+			</if>
+			<if test="telId != null">
+				tel_id,
+			</if>
+			<if test="insertTime != null">
+				insert_time,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="questionId != null">
+				#{questionId,jdbcType=INTEGER},
+			</if>
+			<if test="telId != null">
+				#{telId,jdbcType=INTEGER},
+			</if>
+			<if test="insertTime != null">
+				#{insertTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	 
+	<update id="update" parameterType="cn.gov.hebei.ylbzj.entity.TelDO">
+		update que_tel 
+		<set>
+			<if test="questionId != null">`question_id` = #{questionId}, </if>
+			<if test="telId != null">`tel_id` = #{telId}, </if>
+			<if test="insertTime != null">`insert_time` = #{insertTime}, </if>
+			<if test="updateTime != null">`update_time` = #{updateTime}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from que_tel where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from que_tel where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+	<select id="findTelByIds" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"/>
+		from que_tel where question_id in
+		<foreach item="item" collection="list" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+	<delete id="batchRemoveByIdList">
+		delete from que_tel where id in
+		<foreach item="item" collection="list" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<select id="findByTelId" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"/>
+		from que_tel where tel_id =#{id}
+	</select>
+</mapper>
